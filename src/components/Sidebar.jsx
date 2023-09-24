@@ -1,4 +1,3 @@
-import { useNavigate } from 'react-router-dom';
 import '../App.css';
 import GridViewRoundedIcon from '@mui/icons-material/GridViewRounded';
 import AssignmentTurnedInOutlinedIcon from '@mui/icons-material/AssignmentTurnedInOutlined';
@@ -54,10 +53,7 @@ function Sidebar() {
 
 	const [open, setOpen] = useState(true);
 
-	let navigate = useNavigate();
-	let handlenav = (data) => {
-		navigate(`${data}`);
-	};
+	
 
 	const handleToggle = () => {
 		setOpen(!open);
@@ -145,7 +141,7 @@ function Sidebar() {
 							return (
 								<>
 									<div className='row' key={i}>
-										<Item icon={iconComponent} name={e.title} />
+										<Item icon={iconComponent} name={e.title} link={e.link}/>
 									</div>
 								</>
 							);
@@ -158,12 +154,6 @@ function Sidebar() {
 						</div>
 					</div>
 
-					{/* <div className='support'>
-						<div className='icon-support'>
-							<HelpOutlineRoundedIcon />
-						</div>
-						<div className='title-support'>Help</div>
-					</div> */}
 				</div>
 			</motion.div>
 		</motion.div>

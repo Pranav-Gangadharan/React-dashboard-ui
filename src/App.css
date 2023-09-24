@@ -17,6 +17,7 @@ body {
 
 .Sidebar {
     max-height: 1300px;
+    height: 100vh;
     flex: 0.2;
     position: sticky;
     top: 0;

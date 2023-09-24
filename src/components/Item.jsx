@@ -1,7 +1,13 @@
 import React from 'react';
 import { motion } from 'framer-motion';
+import { useNavigate } from 'react-router-dom';
 import '../App.css';
-function Item({ icon, name }) {
+
+function Item({ icon, name, link }) {
+	let navigate = useNavigate();
+	let handlenav = (data) => {
+		navigate(`${data}`);
+	};
 	const subheading = {
 		true: {
 			opacity: 1,
@@ -40,6 +46,7 @@ function Item({ icon, name }) {
 				duration: 0.1,
 			}}
 			variants={itemVariant}
+            onClick={()=>handlenav(link)}
 		>
 			<motion.div
 				className='icon'
