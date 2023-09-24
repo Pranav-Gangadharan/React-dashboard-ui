@@ -8,6 +8,10 @@ import MarkChatUnreadOutlinedIcon from '@mui/icons-material/MarkChatUnreadOutlin
 import AccountBalanceWalletOutlinedIcon from '@mui/icons-material/AccountBalanceWalletOutlined';
 import SettingsOutlinedIcon from '@mui/icons-material/SettingsOutlined';
 import HelpOutlineRoundedIcon from '@mui/icons-material/HelpOutlineRounded';
+import TocRoundedIcon from '@mui/icons-material/TocRounded';
+import { motion } from 'framer-motion';
+import { useState } from 'react';
+import Item from './Item';
 
 function Sidebar() {
 	const SidebarData = [
@@ -48,35 +52,121 @@ function Sidebar() {
 		},
 	];
 
-
+	const [open, setOpen] = useState(true);
 
 	let navigate = useNavigate();
 	let handlenav = (data) => {
 		navigate(`${data}`);
 	};
 
-	return (
-		<div className='Sidebar'>
-			<div className='sidebar-container'>
-				<h1 className='heading'>Guvi Sales</h1>
-				<ul className='SidebarList'>
-					{SidebarData.map((e, i) => {
-						const iconComponent = getIconComponent(e.title);
-						return (
-							<li className='row' key={i} onClick={() => handlenav(e.link)}>
-								<div className='icon'>{iconComponent}</div>
-								<div className='title'>{e.title}</div>
-							</li>
-						);
-					})}
-				</ul>
-			</div>
+	const handleToggle = () => {
+		setOpen(!open);
+	};
 
-			<div className='support'>
-				<div className="icon-support"><HelpOutlineRoundedIcon/></div>
-				<div className="title-support">Help</div>
-			</div>
-		</div>
+	const sideContainerVariants = {
+		true: {
+			width: '19rem',
+			flex: '0.05',
+		},
+		false: {
+			transition: {
+				delay: 0.6,
+			},
+		},
+	};
+
+	const sidebarVariants = {
+		true: {},
+		false: {
+			width: '3rem',
+			transition: {
+				delay: 0.4,
+			},
+		},
+	};
+
+	const logoVariants = {
+		true: {
+			alignSelf: 'center',
+			width: '8rem',
+		},
+		false: {
+			alignSelf: 'flex-start',
+			marginTop: '2rem',
+			marginBottom: '1rem',
+			width: '3rem',
+			fontSize: '18px',
+			padding: '2px',
+		},
+	};
+
+	return (
+		<motion.div
+			data-Open={open}
+			variants={sideContainerVariants}
+			initial={`${open}`}
+			animate={`${open}`}
+			className='Sidebar'
+		>
+			<motion.div
+				initial={`${open}`}
+				animate={`${open}`}
+				variants={sidebarVariants}
+				className='sidebar-container'
+			>
+				<motion.div
+					whileHover={{
+						scale: 1.2,
+						rotate: 90,
+						transition: {
+							delay: 0.4,
+							duration: 0.4,
+						},
+					}}
+					onClick={handleToggle}
+					className='menu_icon'
+				>
+					<TocRoundedIcon />
+				</motion.div>
+				<motion.div
+					layout
+					initial={`${open}`}
+					animate={`${open}`}
+					variants={logoVariants}
+					className='heading'
+					transition={{ duration: 0.4 }}
+				>
+					Guvi Sales
+				</motion.div>
+				<div className='sidebar-layout'>
+					<div className='SidebarList'>
+						{SidebarData.map((e, i) => {
+							const iconComponent = getIconComponent(e.title);
+							return (
+								<>
+									<div className='row' key={i}>
+										<Item icon={iconComponent} name={e.title} />
+									</div>
+								</>
+							);
+						})}
+					</div>
+
+					<div className='SidebarList'>
+						<div className='row'>
+							<Item icon={<HelpOutlineRoundedIcon />} name={'Help'} />
+						</div>
+					</div>
+
+					{/* <div className='support'>
+						<div className='icon-support'>
+							<HelpOutlineRoundedIcon />
+						</div>
+						<div className='title-support'>Help</div>
+					</div> */}
+				</div>
+			</motion.div>
+		</motion.div>
 	);
 }
 
@@ -102,3 +192,156 @@ function getIconComponent(title) {
 }
 
 export default Sidebar;
+
+// import '../App.css';
+// import { motion } from 'framer-motion';
+// import Item from './Item';
+// import { useState } from 'react';
+// import GridViewRoundedIcon from '@mui/icons-material/GridViewRounded';
+// import AssignmentTurnedInOutlinedIcon from '@mui/icons-material/AssignmentTurnedInOutlined';
+// import EventAvailableRoundedIcon from '@mui/icons-material/EventAvailableRounded';
+// import LocalMallRoundedIcon from '@mui/icons-material/LocalMallRounded';
+// import MarkChatUnreadOutlinedIcon from '@mui/icons-material/MarkChatUnreadOutlined';
+// import AccountBalanceWalletOutlinedIcon from '@mui/icons-material/AccountBalanceWalletOutlined';
+// import SettingsOutlinedIcon from '@mui/icons-material/SettingsOutlined';
+// import HelpOutlineRoundedIcon from '@mui/icons-material/HelpOutlineRounded';
+// import TocRoundedIcon from '@mui/icons-material/TocRounded';
+// function Sidebar() {
+// 	const SidebarData = [
+// 		{
+// 			title: 'Dashboard',
+// 			icon: <GridViewRoundedIcon />,
+// 			link: '/dashboard',
+// 		},
+// 		{
+// 			title: 'Lab Test',
+// 			icon: <AssignmentTurnedInOutlinedIcon />,
+// 			link: '/lab-test',
+// 		},
+// 		{
+// 			title: 'Appointment',
+// 			icon: <EventAvailableRoundedIcon />,
+// 			link: '/appointment',
+// 		},
+// 		{
+// 			title: 'Medicine Order',
+// 			icon: <LocalMallRoundedIcon />,
+// 			link: '/order',
+// 		},
+// 		{
+// 			title: 'Message',
+// 			icon: <MarkChatUnreadOutlinedIcon />,
+// 			link: '/message',
+// 		},
+// 		{
+// 			title: 'Payment',
+// 			icon: <AccountBalanceWalletOutlinedIcon />,
+// 			link: '/payment',
+// 		},
+// 		{
+// 			title: 'Settings',
+// 			icon: <SettingsOutlinedIcon />,
+// 			link: '/settings',
+// 		},
+// 	];
+
+// 	const [open, setOpen] = useState(true);
+
+// 	// for collpsing sidebar
+// 	const handleToggle = () => {
+// 		setOpen(!open);
+// 	};
+
+// 	const sideContainerVariants = {
+// 		true: {
+// 			width: '11rem',
+// 		},
+// 		false: {
+// 			transition: {
+// 				delay: 0.6,
+// 			},
+// 		},
+// 	};
+
+// 	const sidebarVariants = {
+// 		true: {},
+// 		false: {
+// 			width: '3rem',
+// 			transition: {
+// 				delay: 0.4,
+// 			},
+// 		},
+// 	};
+
+// 	const profileVariants = {
+// 		true: {
+// 			alignSelf: 'center',
+// 			width: '9rem',
+// 		},
+// 		false: {
+// 			alignSelf: 'flex-start',
+// 			width: '3rem',
+// 			fontSize: '18px',
+// 		},
+// 	};
+// 	return (
+// 		<div className='App'>
+// 			<motion.div
+// 				data-Open={open}
+// 				variants={sideContainerVariants}
+// 				initial={`${open}`}
+// 				animate={`${open}`}
+// 				className='sidebar_container'
+// 			>
+// 				{/* sidebar div */}
+// 				<motion.div
+// 					className='sidebar'
+// 					initial={`${open}`}
+// 					animate={`${open}`}
+// 					variants={sidebarVariants}
+// 				>
+// 					{/* lines_icon */}
+// 					<motion.div
+// 						whileHover={{
+// 							scale: 1.2,
+// 							rotate: 180,
+// 							transition: {
+// 								delay: 0.2,
+// 								duration: 0.4,
+// 							},
+// 						}}
+// 						onClick={handleToggle}
+// 						className='lines_icon'
+// 					>
+// 						<TocRoundedIcon />
+// 					</motion.div>
+// 					{/* Logo */}
+// 					<motion.div
+// 						layout
+// 						initial={`${open}`}
+// 						animate={`${open}`}
+// 						variants={profileVariants}
+// 						className='profile'
+// 						transition={{ duration: 0.4 }}
+// 					>
+// 						Guvi Sales
+// 					</motion.div>
+// 					{/* sidebar list */}
+// 					<div className='SidebarList'>
+// 						{SidebarData.map((e, i) => {
+// 							return (
+// 								<>
+// 									<div className='row' key={i}>
+// 										<Item icon={e.icon} name={e.title} />
+// 									</div>
+// 								</>
+// 							);
+// 						})}
+// 					</div>
+// 				</motion.div>
+// 			</motion.div>
+// 		</div>
+// 	);
+// }
+
+// export default Sidebar;

@@ -3,111 +3,108 @@
 
 .App {
     display: flex;
+    flex: 0.2;
 }
 
 body {
     font-family: 'Poppins', sans-serif;
     margin: 0;
     padding: 0;
-    font-size: 16px;
-
+    font-size: 15px;
 }
 
+/* sidebar css */
+
 .Sidebar {
-    height: 100vh;
+    max-height: 1300px;
     flex: 0.2;
     position: sticky;
     top: 0;
     left: 0;
-    background-color: #ffffff;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
 }
 
-.sidebar-container{
-    width: 12rem;
+.sidebar-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: start;
+    width: 14rem;
+    height: 100%;
+    padding: 10px;
+    background: rgb(255, 255, 255);
+    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+    backdrop-filter: blur(5.5px);
+    border-radius: 10px;
 }
 
+.menu_icon {
+    display: flex;
+    align-self: flex-end;
+    border-radius: 5px;
+    padding: 5px;
+    cursor: pointer;
+    border: 1px solid rgba(0, 0, 0, 0.292);
+    box-shadow: 0px 1px 20px -4px rgba(0, 0, 0, 0.374);
+}
 
 .SidebarList {
-    height: 100%;
-    width: 100%;
-    padding-left: 0px;
+    display: flex;
+    flex-direction: column;
+    width: 100%
 }
 
 .SidebarList .row {
-    width: 100%;
-    height: 60px;
-    list-style-type: none;
-    color: #666666;
-    margin: 0;
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
+    width: 100%
+}
+
+.sidebar-layout{
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.item {
+    display: flex;
+    padding: 6px 10px 6px 10px;
     align-items: center;
-    justify-content: center;
-    transition: all 1ms ease;
+    justify-content: flex-start;
+    border-radius: 10px;
 }
 
-.row .title {
-    flex: 80%;
+.icon {
+    margin-right: 0.5rem;
+    margin-top: 6px;
+    margin-left: 10px;
 }
 
-.row .icon {
-    flex: 50%;
-    display: grid;
-    place-items: center;
-}
-
-
-.SidebarList .row:hover {
-    cursor: pointer;
-    border-left: 3px solid #0C64F8;
-    border-radius: 2px;
-    color: #0C64F8;
+.name {
+    margin: 0px 10px;
 }
 
 
 .Sidebar .heading {
     cursor: pointer;
-    text-align: center;
+    align-self: center;
     font-size: 24px;
     font-weight: 500;
     color: #013CC6;
-    padding-bottom: 10px;
+    padding: 15px;
 }
 
-.Sidebar .support {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: center;
-    color: #666666;
-    margin-bottom: 20px;
-}
-
-.Sidebar .support:hover {
-    cursor: pointer;
-    border-left: 3px solid #0C64F8;
-    border-radius: 2px;
-    color: #0C64F8;
-}
-
-.support .title-support {
-    flex: 80%;
-}
-
-.support .icon-support {
-    flex: 50%;
-    display: grid;
-    place-items: center;
-}
 
 .container {
     flex: 1;
     background-color: #F8F8F8;
 }
 
+
+/* navbar css */
 .navbar {
     height: 50px;
     display: flex;
